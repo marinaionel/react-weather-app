@@ -13,13 +13,14 @@ import getTempUnit from "../../utils/getTempUnit";
 import ForecastList from "../../components/forecastList/ForecastList";
 import { fetchForecast } from "../../store/forecast/forecastSlice";
 import dayjs from "dayjs";
+import LocationCard from "../../components/locationCard/LocationCard";
+import CurrentTemperatureCard from "../../components/currentTemperatureCard/CurrentTemperatureCard";
 
 const CurrentWeatherContainer: React.FC = () => {
   const query = useSelector((state: RootState) => state.search.query);
   const currentWeather = useSelector(
     (state: RootState) => state.currentWeather.currentWeather
   );
-  const time = new Date();
   const unit = useSelector((state: RootState) => state.search.unit);
   const forecast = useSelector((state: RootState) => state.forecast.forecast);
 
@@ -58,44 +59,17 @@ const CurrentWeatherContainer: React.FC = () => {
 
   return (
     <>
-      <Card
-        sx={{
-          textAlign: "center",
-        }}
-      >
-        <CardContent>
-          <Typography level="h3">{query.description}</Typography>
-          <Typography sx={{ color: "#5F667A" }}>
-            {dayjs().tz(query.tz).format("LLLL")}
-          </Typography>
-        </CardContent>
-      </Card>
+      <LocationCard location={query.description} timezone={query.tz} />
 
       {currentWeather && (
         <>
-          <Card
-            sx={{
-              marginTop: "16px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Box display={"flex"} alignItems={"center"} flexDirection={"row"}>
-              <img
-                src={getWeatherIconSrc(currentWeather.weather[0].icon)}
-              ></img>
-              <Typography level="h1" marginLeft={"0.5rem"}>
-                {Math.round(currentWeather.main.temp)} {getTempUnit(unit)}
-              </Typography>
-            </Box>
-
-            <Typography sx={{ color: "#F7822F" }}>
-              H:{Math.round(currentWeather.main.temp_max)} {getTempUnit(unit)}{" "}
-              L:
-              {Math.round(currentWeather.main.temp_min)} {getTempUnit(unit)}
-            </Typography>
-          </Card>
+          <CurrentTemperatureCard
+            maxTemp={currentWeather.main.temp_max}
+            minTemp={currentWeather.main.temp_min}
+            temp={currentWeather.main.temp}
+            unit={unit}
+            weatherIconUrl={getWeatherIconSrc(currentWeather.weather[0].icon)}
+          />
 
           <Card
             sx={{
@@ -164,7 +138,7 @@ const CurrentWeatherContainer: React.FC = () => {
 
           {forecast && (
             <Box sx={{ marginTop: "16px" }}>
-              <Typography level="h3" sx={{ marginBottom: "8px" }}>
+              <Typography level="h4" sx={{ marginBottom: "8px" }}>
                 Weather Forecast
               </Typography>
               <ForecastList unit={unit} forecastList={forecast.list} />
