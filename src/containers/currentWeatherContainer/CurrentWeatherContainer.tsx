@@ -12,6 +12,7 @@ import CompressIcon from "@mui/icons-material/Compress";
 import getTempUnit from "../../utils/getTempUnit";
 import ForecastList from "../../components/forecastList/ForecastList";
 import { fetchForecast } from "../../store/forecast/forecastSlice";
+import dayjs from "dayjs";
 
 const CurrentWeatherContainer: React.FC = () => {
   const query = useSelector((state: RootState) => state.search.query);
@@ -63,13 +64,9 @@ const CurrentWeatherContainer: React.FC = () => {
         }}
       >
         <CardContent>
-          <Typography level="h3">Current Weather</Typography>
-          <Typography>{query.description}</Typography>
+          <Typography level="h3">{query.description}</Typography>
           <Typography sx={{ color: "#5F667A" }}>
-            {time.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
+            {dayjs().tz(query.tz).format("LLLL")}
           </Typography>
         </CardContent>
       </Card>

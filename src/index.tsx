@@ -10,7 +10,10 @@ import "@fontsource/inter";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { CssVarsProvider } from "@mui/joy";
 import dayjs from "dayjs";
-var localizedFormat = require("dayjs/plugin/localizedFormat");
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,6 +22,8 @@ const root = ReactDOM.createRoot(
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY!;
 
 dayjs.extend(localizedFormat)
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 root.render(
   <React.StrictMode>
