@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardContent, Typography } from "@mui/joy";
+import { Box, Card, Typography } from "@mui/joy";
 import { Unit } from "../../models/WeatherResponse";
 import getTempUnit from "../../utils/getTempUnit";
 
@@ -35,8 +35,10 @@ const CurrentTemperatureCard: React.FC<CurrentTemperatureCardProps> = ({
       </Box>
 
       <Typography sx={{ color: "#F7822F" }}>
-        H:{Math.round(maxTemp)} {getTempUnit(unit)} L:
-        {Math.round(minTemp)} {getTempUnit(unit)}
+        H:{Math.round(maxTemp)}
+        {getTempUnit(unit)} L:
+        {Math.round(minTemp)}
+        {getTempUnit(unit)}
       </Typography>
     </Card>
   );
