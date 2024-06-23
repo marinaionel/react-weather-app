@@ -3,8 +3,10 @@ import mapboxgl from "mapbox-gl";
 import "./MapContainer.css";
 import ClickableMarker from "../../models/ClickableMarker";
 import mapPoints from "../../constants/mapPoints";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setQuery } from "../../store/search/searchSlice";
+import { RootState } from "../../store/store";
+import getTempUnit from "../../utils/getTempUnit";
 
 const MapContainer: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -30,14 +32,7 @@ const MapContainer: React.FC = () => {
 
         new ClickableMarker(el)
           .setLngLat(feature.coordinates)
-          .setPopup(
-            new mapboxgl.Popup({ offset: 25 }).setHTML(
-              `<p>${feature.description}</p>`
-            )
-          )
-          .onClick(async () => {
-            dispatch(setQuery(feature));
-          })
+          .onClick(() => dispatch(setQuery(feature)))
           .addTo(map);
       }
 

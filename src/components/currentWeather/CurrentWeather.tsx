@@ -3,26 +3,37 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { fetchCurrentWeather } from "../../store/currentWeather/currentWeatherSlice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { Box, Grid, Typography } from "@mui/joy";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/joy";
 import AirIcon from "@mui/icons-material/Air";
 import { Unit } from "../../models/WeatherResponse";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import CloudIcon from "@mui/icons-material/Cloud";
 import CompressIcon from "@mui/icons-material/Compress";
+import getTempUnit from "../../utils/getTempUnit";
+import ForecastList from "../forecastList/ForecastList";
+import { fetchForecast } from "../../store/forecast/forecastSlice";
 
-const CurrentWeather: React.FC = () => {
+const CurrentWeatherContainer: React.FC = () => {
   const query = useSelector((state: RootState) => state.search.query);
   const currentWeather = useSelector(
     (state: RootState) => state.currentWeather.currentWeather
   );
   const time = new Date();
   const unit = useSelector((state: RootState) => state.search.unit);
+  const forecast = useSelector((state: RootState) => state.forecast.forecast);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(
       fetchCurrentWeather({
+        lat: query.coordinates.lat,
+        lon: query.coordinates.lng,
+        units: unit,
+      })
+    );
+    dispatch(
+      fetchForecast({
         lat: query.coordinates.lat,
         lon: query.coordinates.lng,
         units: unit,
@@ -40,44 +51,36 @@ const CurrentWeather: React.FC = () => {
     }
   };
 
-  const getTempUnit = (unit: Unit) => {
-    switch (unit) {
-      case "imperial":
-        return "°F";
-      case "metric":
-        return "°C";
-      case "standard":
-        return "°K";
-    }
-  };
-
   const getWeatherIconSrc = (iconcode: string) => {
     return "http://openweathermap.org/img/w/" + iconcode + ".png";
   };
 
   return (
     <>
-      <Box
+      <Card
         sx={{
           backgroundColor: "#F7F7F7",
-          borderRadius: "10px",
           textAlign: "center",
         }}
       >
-        <Typography level="h3">Current Weather</Typography>
-        <Typography>{query.description}</Typography>
-        <Typography sx={{ color: "#5F667A" }}>
-          {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-        </Typography>
-      </Box>
+        <CardContent>
+          <Typography level="h3">Current Weather</Typography>
+          <Typography>{query.description}</Typography>
+          <Typography sx={{ color: "#5F667A" }}>
+            {time.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </Typography>
+        </CardContent>
+      </Card>
 
       {currentWeather && (
         <>
-          <Box
+          <Card
             sx={{
               backgroundColor: "#F7F7F7",
-              borderRadius: "10px",
-              marginTop: "1rem",
+              marginTop: "16px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -97,13 +100,12 @@ const CurrentWeather: React.FC = () => {
               L:
               {Math.round(currentWeather.main.temp_min)} {getTempUnit(unit)}
             </Typography>
-          </Box>
+          </Card>
 
-          <Box
+          <Card
             sx={{
               backgroundColor: "#F7F7F7",
-              borderRadius: "10px",
-              marginTop: "1rem",
+              marginTop: "16px",
             }}
           >
             <Grid container spacing={2}>
@@ -164,11 +166,17 @@ const CurrentWeather: React.FC = () => {
                 </Box>
               </Grid>
             </Grid>
-          </Box>
+          </Card>
+
+          {forecast && (
+            <Box sx={{ marginTop: "16px" }}>
+              <ForecastList unit={unit} forecastList={forecast.list} />
+            </Box>
+          )}
         </>
       )}
     </>
   );
 };
 
-export default CurrentWeather;
+export default CurrentWeatherContainer;

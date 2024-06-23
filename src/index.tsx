@@ -9,12 +9,16 @@ import { store } from "./store/store";
 import "@fontsource/inter";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { CssVarsProvider } from "@mui/joy";
+import dayjs from "dayjs";
+var localizedFormat = require("dayjs/plugin/localizedFormat");
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY!;
+
+dayjs.extend(localizedFormat)
 
 root.render(
   <React.StrictMode>
