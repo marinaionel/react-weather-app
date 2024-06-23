@@ -5,7 +5,7 @@ import { setQuery, setUnit } from "../../store/search/searchSlice";
 import { RootState } from "../../store/store";
 import { Unit } from "../../models/WeatherResponse";
 
-const Search: React.FC = () => {
+const SearchContainer: React.FC = () => {
   const query = useSelector((state: RootState) => state.search.query);
   const dispatch = useDispatch();
   const unit = useSelector((state: RootState) => state.search.unit);
@@ -36,4 +36,4 @@ const Search: React.FC = () => {
   );
 };
 
-export default Search;
+export default SearchContainer;

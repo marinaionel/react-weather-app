@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import MapContainer from "./containers/mapContainer/MapContainer";
 import { Container, Grid } from "@mui/joy";
-import Search from "./components/search/Search";
+import SearchContainer from "./containers/search/SearchContainer";
 import CurrentWeatherContainer from "./containers/currentWeatherContainer/CurrentWeatherContainer";
 
 const App: React.FC = () => {
@@ -17,7 +17,7 @@ const App: React.FC = () => {
     >
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         <Grid xs={12}>
-          <Search />
+          <SearchContainer />
         </Grid>
 
         <Grid xs={6}>
