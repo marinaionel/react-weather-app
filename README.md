@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# React Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The React Weather App is a React application that displays current weather conditions and a 5-day weather forecast for various locations using the OpenWeather API. The app integrates Mapbox for an interactive map experience, allowing users to click on pins to view weather details. It also supports metric, imperial, and standard units for temperature and other weather metrics. Redux is used for state management, and Jest is used for testing.
 
-## Available Scripts
+![image](https://github.com/marinaionel/react-weather-app/assets/19744901/17abf901-edef-467c-9000-1f16bf66aadd)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Map View**: View locations on a Mapbox map.
+- **Weather Details**: Click on a pin or select from the dropdown to see the current weather and 5-day forecast for that location.
+- **Unit Selection**: Choose between metric, imperial, and standard units.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clone the repository:
 
-### `npm test`
+   ```bash
+   git clone https://github.com/marinaionel/react-weather-app.git
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+### Environment Variables
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create a `.env` file in the root directory and add your Mapbox and OpenWeather API keys:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+REACT_APP_MAPBOX_API_KEY=your_mapbox_token
+REACT_APP_OPEN_WEATHER_API_KEY=your_openweather_api_key
+REACT_APP_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/2.5
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running the App
 
-### `npm run eject`
+Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open your browser and navigate to `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Testing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Run tests with Jest:
 
-## Learn More
+```bash
+npm test
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React
+- Redux
+- MUI
+- dayjs
+- Jest
+- [Mapbox](https://www.mapbox.com/)
+- [OpenWeather](https://openweathermap.org/)
