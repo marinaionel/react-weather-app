@@ -20,7 +20,6 @@ const ForecastItem: React.FC<ForecastItemProps> = ({ data, unit }) => {
       sx={{
         minWidth: "100px",
         textAlign: "center",
-        backgroundColor: "#F7F7F7",
       }}
     >
       <CardContent>

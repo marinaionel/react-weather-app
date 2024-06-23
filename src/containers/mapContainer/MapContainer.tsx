@@ -3,10 +3,8 @@ import mapboxgl from "mapbox-gl";
 import "./MapContainer.css";
 import ClickableMarker from "../../models/ClickableMarker";
 import mapPoints from "../../constants/mapPoints";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setQuery } from "../../store/search/searchSlice";
-import { RootState } from "../../store/store";
-import getTempUnit from "../../utils/getTempUnit";
 
 const MapContainer: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>(null);

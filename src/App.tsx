@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import MapContainer from "./components/mapContainer/MapContainer";
+import MapContainer from "./containers/mapContainer/MapContainer";
 import { Container, Grid } from "@mui/joy";
 import Search from "./components/search/Search";
-import CurrentWeatherContainer from "./components/currentWeather/CurrentWeather";
+import CurrentWeatherContainer from "./containers/currentWeatherContainer/CurrentWeatherContainer";
 
 const App: React.FC = () => {
   return (

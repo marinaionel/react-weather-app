@@ -10,7 +10,7 @@ import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import CloudIcon from "@mui/icons-material/Cloud";
 import CompressIcon from "@mui/icons-material/Compress";
 import getTempUnit from "../../utils/getTempUnit";
-import ForecastList from "../forecastList/ForecastList";
+import ForecastList from "../../components/forecastList/ForecastList";
 import { fetchForecast } from "../../store/forecast/forecastSlice";
 
 const CurrentWeatherContainer: React.FC = () => {
@@ -59,7 +59,6 @@ const CurrentWeatherContainer: React.FC = () => {
     <>
       <Card
         sx={{
-          backgroundColor: "#F7F7F7",
           textAlign: "center",
         }}
       >
@@ -79,7 +78,6 @@ const CurrentWeatherContainer: React.FC = () => {
         <>
           <Card
             sx={{
-              backgroundColor: "#F7F7F7",
               marginTop: "16px",
               display: "flex",
               flexDirection: "column",
@@ -104,7 +102,6 @@ const CurrentWeatherContainer: React.FC = () => {
 
           <Card
             sx={{
-              backgroundColor: "#F7F7F7",
               marginTop: "16px",
             }}
           >
@@ -170,6 +167,9 @@ const CurrentWeatherContainer: React.FC = () => {
 
           {forecast && (
             <Box sx={{ marginTop: "16px" }}>
+              <Typography level="h3" sx={{ marginBottom: "8px" }}>
+                Weather Forecast
+              </Typography>
               <ForecastList unit={unit} forecastList={forecast.list} />
             </Box>
           )}
