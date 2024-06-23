@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import mapboxgl, { LngLatLike } from "mapbox-gl";
+import React, { useEffect, useRef } from "react";
+import mapboxgl from "mapbox-gl";
 import "./MapContainer.css";
 import ClickableMarker from "../../models/ClickableMarker";
 import mapPoints from "../../constants/mapPoints";
-import { fetchWeatherData } from "../../services/weatherService";
 import { useDispatch } from "react-redux";
-import { setQuery } from "../../store/searchSlice";
+import { setQuery } from "../../store/search/searchSlice";
 
 const MapContainer: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -37,13 +36,7 @@ const MapContainer: React.FC = () => {
             )
           )
           .onClick(async () => {
-            dispatch(setQuery(feature.description));
-            console.log(
-              await fetchWeatherData(
-                feature.coordinates.lat,
-                feature.coordinates.lng
-              )
-            );
+            dispatch(setQuery(feature));
           })
           .addTo(map);
       }

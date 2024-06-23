@@ -1,4 +1,9 @@
-const mapPoints = [
+export interface MapPoint {
+  coordinates: { lng: number; lat: number };
+  description: string;
+}
+
+const mapPoints: MapPoint[] = [
   {
     coordinates: { lng: 12.56, lat: 55.67 },
     description: "Copenhagen, Denmark",

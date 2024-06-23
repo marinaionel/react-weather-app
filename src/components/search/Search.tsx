@@ -1,7 +1,7 @@
 import { Autocomplete } from "@mui/joy";
 import mapPoints from "../../constants/mapPoints";
 import { useDispatch, useSelector } from "react-redux";
-import { setQuery } from "../../store/searchSlice";
+import { setQuery } from "../../store/search/searchSlice";
 import { RootState } from "../../store/store";
 
 const Search: React.FC = () => {
@@ -11,7 +11,8 @@ const Search: React.FC = () => {
 
   return (
     <Autocomplete
-      options={options}
+      options={mapPoints}
+      getOptionLabel={(opt) => opt.description}
       value={query}
       onChange={(_, value) => value && dispatch(setQuery(value))}
     ></Autocomplete>

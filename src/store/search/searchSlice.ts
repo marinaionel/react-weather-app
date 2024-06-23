@@ -1,18 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import mapPoints, { MapPoint } from "../../constants/mapPoints";
 
 interface SearchState {
-  query: string;
+  query: MapPoint;
 }
 
 const initialState: SearchState = {
-  query: "Copenhagen, Denmark",
+  query: mapPoints[0],
 };
 
 export const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    setQuery: (state, action: PayloadAction<string>) => {
+    setQuery: (state, action: PayloadAction<MapPoint>) => {
       state.query = action.payload;
     },
   },
