@@ -18,7 +18,7 @@ const initialState: CurrentWeatherState = {
   error: undefined,
 };
 
-export const fetchCurrentWeatherThunk = createAsyncThunk<
+export const fetchCurrentWeather = createAsyncThunk<
   CurrentWeatherResponse,
   { lat: number; lon: number; units: Unit },
   AsyncThunkConfig
@@ -37,25 +37,25 @@ export const fetchCurrentWeatherThunk = createAsyncThunk<
   }
 });
 
-export const searchSlice = createSlice({
+export const currentWeatherSlice = createSlice({
   name: "currentWeather",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCurrentWeatherThunk.pending, (state) => {
+      .addCase(fetchCurrentWeather.pending, (state) => {
         state.status = "loading";
         state.error = undefined;
       })
-      .addCase(fetchCurrentWeatherThunk.fulfilled, (state, action) => {
+      .addCase(fetchCurrentWeather.fulfilled, (state, action) => {
         state.currentWeather = action.payload;
         state.status = "succeeded";
       })
-      .addCase(fetchCurrentWeatherThunk.rejected, (state, action) => {
+      .addCase(fetchCurrentWeather.rejected, (state, action) => {
         state.error = action.error.message;
         state.status = "failed";
       });
   },
 });
 
-export default searchSlice.reducer;
+export default currentWeatherSlice.reducer;

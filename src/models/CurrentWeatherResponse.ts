@@ -35,5 +35,3 @@ export interface CurrentWeatherResponse {
   name: string;
   cod: number;
 }
-
-export interface CurrentResponse extends CurrentWeatherResponse {}

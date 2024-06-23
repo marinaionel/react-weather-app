@@ -12,7 +12,7 @@ const App: React.FC = () => {
         maxWidth: { md: "95%" },
         width: "100%",
         height: "100%",
-        marginTop: "1rem",
+        marginTop: "1rem"
       }}
     >
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
