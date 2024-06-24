@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import MapContainer from "./containers/mapContainer/MapContainer";
 import { Container, Grid } from "@mui/joy";
 import SearchContainer from "./containers/search/SearchContainer";
